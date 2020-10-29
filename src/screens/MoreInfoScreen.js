@@ -1,89 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import { Text, View, StyleSheet, Image, FlatList } from 'react-native'
+import React, { useEffect } from 'react'
+import { Text, StyleSheet, ScrollView } from 'react-native'
 import ShowErrorMsg from '../functions/ShowErrorMsg'
-import RequestToApi from '../functions/RequesToApi'
+import useId from '../hooks/useId'
+import ImageBox from '../components/ImageBox'
+import InfoBox from '../components/InfoBox'
+import ChipsBox from '../components/ChipsBox'
 
 
 const MoreInfoScreen = ({navigation}) => {
-  const [result, setResult] = useState(null)
-  const [errorMsg, setErrorMsg] = useState('')
   const restId = navigation.getParam('id')
+  const [idApi,result, errorMsg] = useId()
 
   useEffect(() => {
-    RequestToApi(`/${restId}`, setResult, setErrorMsg)
+    idApi(restId)
   }, [])
 
   if (!result) {
     return null
   }
-
-  console.log(result.photos)
   
   return (
-    <View style={styles.container}>
-      <View style={styles.imageBox}>
-        <Image
-          style={styles.imageBig}
-          source={
-            result.photos[0]
-            ? {uri: result.photos[0]}
-            : null
-          }
-        />
-        <Image
-          style={styles.image}
-          source={
-            result.photos[1]
-            ? {uri: result.photos[1]}
-            : null
-          }
-        />
-        <Image
-          style={styles.image}
-          source={
-            result.photos[2]
-            ? {uri: result.photos[2]}
-            : null
-          }
-        />
-      </View>
+    <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ImageBox
+        arr={result.photos} 
+      />
       <Text style={styles.name}>{result.name}</Text>
+      <InfoBox
+        title={'Address:'}
+        info={result.location.address1}
+      />
+      <InfoBox
+        title={'Phone:'}
+        info={result.phone}
+      />
+      <ChipsBox 
+        title={'Categories:'}
+        chipsInfo={result.categories}
+      />
+      <ChipsBox 
+        title={'Transactions:'}
+        chipsInfo={result.transactions}
+      />
       {ShowErrorMsg(errorMsg)}
-    </View>
+    </ScrollView>
   ) 
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    padding: 4,
-  },
-  imageBox: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#00e',
-    borderRadius: 5,
-
-  },
-  imageBig: {
-    height: 220,
-    width: '100%',
-    borderRadius: 5,
-  },
-  image: {
-    height: 120,
-    width: '50%',
-    borderRadius: 5,
+    justifyContent: 'space-evenly',
+    padding: 3,
+    backgroundColor: '#546e7a',
   },
   name: {
-    flex: 1, 
+    height: 35,
     fontSize: 26,
     fontWeight: 'bold',
-    textAlign: 'left', 
-  } 
+    textAlign: 'left',
+    color: '#fff',
+  }, 
 })
 
 export default MoreInfoScreen

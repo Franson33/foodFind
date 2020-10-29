@@ -3,7 +3,6 @@ import { Text, StyleSheet } from 'react-native'
 
 
 const ShowErrorMsg = (errorMsg) => {
- 
   return (  
     errorMsg
       ? <Text style={styles.error}>{errorMsg}</Text>

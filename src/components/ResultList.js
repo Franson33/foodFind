@@ -26,8 +26,7 @@ const ResultList = ({title, results, ready, navigation}) => {
                   </TouchableOpacity>
                 )
               }}
-            />
-        }
+            />}
       </View>
     </View>
   )
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     marginHorizontal: 3,
     borderRadius: 5,
-    backgroundColor: '#1b1b1b',
+    backgroundColor: '#546e7a',
   },
   title: {
     marginBottom: 3,

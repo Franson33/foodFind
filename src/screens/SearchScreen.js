@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import useResults from '../hooks/useResults'
+import FilterResByPrice from '../functions/FilterResByPrice'
 import SearchBar from '../components/SearchBar'
 import ResultList from '../components/ResultList'
 import ShowErrorMsg from '../functions/ShowErrorMsg'
-import FilterResByPrice from '../functions/FilterResByPrice'
+
 
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('')
-  const [searchApi, errorMsg, results, contentReady] = useResults()
+  const [searchApi, results, errorMsg, contentReady] = useResults()
+
+  if (!results) {
+    return null
+  }
 
   const filteredRes = FilterResByPrice(results)
 

@@ -27,7 +27,7 @@ export default () => {
   
   useEffect(() => {
     searchApi('pizza')
-   }, [])
+  }, [])
   
-  return [searchApi, errorMsg, results, contentReady]
+  return [searchApi, results, errorMsg, contentReady]
 }

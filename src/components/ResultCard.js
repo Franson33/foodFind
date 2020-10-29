@@ -10,13 +10,12 @@ const ResultCard = ({result}) => {
         source={
           result.image_url
           ? {uri: result.image_url} 
-          : null
-        }
+          : null}
       /> 
-      <Text style={styles.title}>{result.name}</Text>
-      <Text 
-        style={styles.textInfo}
-      >
+      <Text style={styles.title}>
+        {result.name}
+      </Text>
+      <Text style={styles.textInfo}>
         {result.rating} Stars, {result.review_count} Reviews
       </Text> 
     </View>
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   }, 
   title: {
+    flexShrink: 2,
+    width: 200,
     fontWeight: 'bold',
-    textAlignVertical: 'center',
-    overflow: 'hidden'
   },
   image: {
     width: 200,
@@ -43,6 +42,7 @@ const styles = StyleSheet.create({
   },
   textInfo: {
     fontSize: 15,
+    fontStyle: 'italic',
   }
 })
 

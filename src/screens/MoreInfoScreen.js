@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, StyleSheet, ScrollView } from 'react-native'
-import ShowErrorMsg from '../functions/ShowErrorMsg'
-import useId from '../hooks/useId'
+import ShowErrorMsg from '../components/ShowErrorMsg'
+import idApi  from '../hooks/useId'
 import ImageBox from '../components/ImageBox'
 import InfoBox from '../components/InfoBox'
 import ChipsBox from '../components/ChipsBox'
@@ -9,10 +9,11 @@ import ChipsBox from '../components/ChipsBox'
 
 const MoreInfoScreen = ({navigation}) => {
   const restId = navigation.getParam('id')
-  const [idApi,result, errorMsg] = useId()
+  const [result, setResult] = useState(null)
+  const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(() => {
-    idApi(restId)
+    idApi(restId, setResult, setErrorMsg)
   }, [])
 
   if (!result) {
@@ -37,10 +38,12 @@ const MoreInfoScreen = ({navigation}) => {
         title={'Categories:'}
         chipsInfo={result.categories}
       />
-      <ChipsBox 
-        title={'Transactions:'}
-        chipsInfo={result.transactions}
-      />
+      {result.transactions.length === 0
+       ? null
+       : <ChipsBox
+           title={'Transactions:'}
+           chipsInfo={result.transactions}
+         />}       
       {ShowErrorMsg(errorMsg)}
     </ScrollView>
   ) 
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   },
   name: {
     height: 35,
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'left',
     color: '#fff',

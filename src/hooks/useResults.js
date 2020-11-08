@@ -7,26 +7,26 @@ export default () => {
   const [errorMsg, setErrorMsg] = useState('')
   const [contentReady, setContentReady] = useState(false)
   
-  const searchApi = (searchTerm) => {
-    (async () => {  
-      try {
-        const response = await yelp.get('/search', {
-          params: {
-            term: searchTerm,
-            location: 'san francisco',
-            limit: 50
-          }
+  async function searchApi(searchTerm = 'pizza', searchCity = 'new york') {
+    try {
+      const response = await yelp.get('/search', {
+        params: {
+          term: searchTerm,
+          location: searchCity,
+          limit: 50
+        }
         })
-        setResults(response.data.businesses) 
-        setContentReady(true)
-      } catch (err) {
-        setErrorMsg('We are so sorry, but there is no answer from the server, please try again later!')
-      }
-    })()
+      setResults(response.data.businesses) 
+      setContentReady(true)
+    } catch (err) {
+      setErrorMsg(err)
+    }
+    return 
   }
   
+  
   useEffect(() => {
-    searchApi('pizza')
+    searchApi()
   }, [])
   
   return [searchApi, results, errorMsg, contentReady]

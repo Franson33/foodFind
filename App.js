@@ -1,35 +1,34 @@
 import React from 'react'
-import { Button, StatusBarStyle } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import SearchScreen from './src/screens/SearchScreen'
 import MoreInfoScreen from './src/screens/MoreInfoScreen'
+import CityScreen from './src/screens/CityScreen'
+import HeaderButton from './src/components/HeaderButton'
+
+
 
 const navigator = createStackNavigator(
 {
   Search: SearchScreen,
-  MoreInfo: MoreInfoScreen
+  MoreInfo: MoreInfoScreen,
+  City: CityScreen
 }, 
 {
   initialRouteName: 'Search',
   defaultNavigationOptions: {
     title: 'FoodFind',
-    StatusBarStyle: 'light-content',
-    headerTintColor: '#fff',
     headerStyle: {
-      backgroundColor: '#78909c',
+      backgroundColor: '#29434e',
     },
+    headerTintColor: '#fff',
     headerRightContainerStyle: {
-      marginRight: 25,
+      marginRight: 20,
     },
     headerRight: () => (
-      <Button 
-        onPress={() => alert('This is a button!')}
-        title="Settings"
-      />
+      <HeaderButton />
     )
   }  
-}
-)
+})
 
 export default createAppContainer(navigator) 

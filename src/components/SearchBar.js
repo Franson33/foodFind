@@ -4,7 +4,6 @@ import { Feather } from '@expo/vector-icons'
 
 
 function SearchBar({term, onTermChange, onTermSubmit}) {
-
   return (
     <View style={styles.background}>
       <Feather

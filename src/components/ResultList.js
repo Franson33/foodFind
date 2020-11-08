@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import ResultCard from './ResultCard'
-import ResultListSkel from './ResultListSkel';
+import ResultListSkel from './ResultListSkel'
 
 
 const ResultList = ({title, results, ready, navigation}) => {
@@ -17,10 +17,12 @@ const ResultList = ({title, results, ready, navigation}) => {
               data={results}
               keyExtractor={result => result.id}
               showsHorizontalScrollIndicator={false}
-              renderItem={({ item }) => {
+              renderItem={({item}) => {
                 return (
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('MoreInfo', {id: item.id})}
+                    onPress={function() {
+                      return navigation.navigate('MoreInfo', {id: item.id})
+                    }}
                   >
                     <ResultCard result={item} />
                   </TouchableOpacity>

@@ -3,38 +3,33 @@ import { View, Text, StyleSheet } from 'react-native'
 
 
 const ChipsBox = ({title, chipsInfo}) => {
+  const arr = chipsInfo.map((chip, i) => {
+    return (
+        chipsInfo[i]
+        ? <Text 
+            style={styles.chip}
+            key={'chip200' + `${i}`}
+          >{
+            chipsInfo[i]['title']
+            ? chipsInfo[i]['title']
+            : chipsInfo[i]}
+          </Text>
+        : null
+    )  
+  })
+
   return (
     <View style={styles.chipsBox}>
       <Text style={styles.chipsTitle}>{title}</Text>
-      {chipsInfo[0]
-        ? <Text style={styles.chip}>{
-            chipsInfo[0]['title']
-            ? chipsInfo[0]['title']
-            : chipsInfo[0]}
-          </Text>
-        : null}
-      {chipsInfo[1]
-        ? <Text style={styles.chip}>{
-            chipsInfo[1]['title']
-            ? chipsInfo[1]['title']
-            : chipsInfo[1]}
-          </Text>
-        : null}
-      {chipsInfo[2]
-        ? <Text style={styles.chip}>{
-            chipsInfo[2]['title']
-            ? chipsInfo[2]['title']
-            : chipsInfo[2]}
-          </Text>
-        : null}
+      {arr} 
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   chipsBox: {
-    flex: 1,
     flexDirection: 'row',
+    flexShrink: 1,
     flexWrap: 'wrap',
     marginTop: 4,
     paddingHorizontal: 5,

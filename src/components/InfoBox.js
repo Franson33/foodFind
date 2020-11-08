@@ -13,7 +13,6 @@ const InfoBox = ({title, info}) => {
 
 const styles = StyleSheet.create({
   infoBox: {
-    flex: 1,
     justifyContent: 'space-evenly',
     marginTop: 4,
     paddingHorizontal: 5,
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   info: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     fontStyle: 'italic',
   },

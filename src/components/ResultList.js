@@ -20,9 +20,7 @@ const ResultList = ({title, results, ready, navigation}) => {
               renderItem={({item}) => {
                 return (
                   <TouchableOpacity
-                    onPress={function() {
-                      return navigation.navigate('MoreInfo', {id: item.id})
-                    }}
+                    onPress={() => navigation.navigate('MoreInfo', { id: item.id })}
                   >
                     <ResultCard result={item} />
                   </TouchableOpacity>
@@ -46,6 +44,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 3,
     fontSize: 15,
+    fontWeight: 'bold',
     color: '#fff',
   },
   box: {

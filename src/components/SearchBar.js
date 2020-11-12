@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 3,
     marginVertical: 5,
+    width: '75%',
     height: 35,
     borderRadius: 5,
     backgroundColor: '#fff',

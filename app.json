@@ -4,7 +4,7 @@
     "slug": "foodFind",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/foodFind.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -20,7 +20,11 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/foodFind.png"
+    },
+    "description": "Restaurant find service",
+    "android": {
+      "package": "com.antonfr.foodFind"
     }
   }
 }

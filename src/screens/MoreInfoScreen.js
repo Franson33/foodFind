@@ -28,7 +28,7 @@ const MoreInfoScreen = ({navigation}) => {
       <Text style={styles.name}>{result.name}</Text>
       <InfoBox
         title={'Address:'}
-        info={result.location.address1}
+        info={result.location.display_address}
       />
       <InfoBox
         title={'Phone:'}

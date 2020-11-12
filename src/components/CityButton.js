@@ -1,19 +1,16 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
-import { withNavigation } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
-const HeaderButton = ({navigation}) => {
+const CityButton = ({toOpenModal}) => {
   return (
     <TouchableOpacity 
-      onPress={function() {
-        return navigation.navigate('City')
-      }}
+      onPress={toOpenModal}
     >
       <View style={styles.container}>
         <Text style={styles.title}>
-          Choose city
+          City
         </Text>
         <MaterialCommunityIcons
           name="city-variant"
@@ -29,8 +26,13 @@ const HeaderButton = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    marginRight: 3,
+    marginVertical: 5,
+    width: '95%',
+    height: 35,
     paddingHorizontal: 10,
     paddingVertical: 3,
+    borderWidth: 1,
     borderRadius: 20,
     backgroundColor: '#fff'
   },
@@ -43,5 +45,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(HeaderButton)
+export default CityButton
                

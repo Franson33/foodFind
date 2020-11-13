@@ -28,26 +28,27 @@ const ChipsBox = ({title, chipsInfo}) => {
 
 const styles = StyleSheet.create({
   chipsBox: {
+    flex: 0,
     flexDirection: 'row',
     flexShrink: 1,
     flexWrap: 'wrap',
     marginTop: 4,
     paddingHorizontal: 5,
-    paddingBottom: 4,
     borderRadius: 5,
     backgroundColor: '#fff',
   },
   chipsTitle: {
-    width: '100%',
     marginBottom: 3,
-    fontSize: 16,
-    
+    fontSize: 15,
+    textAlignVertical: 'center',
   },
   chip: {
-    flexShrink: 1,
-    paddingVertical: 5,
+    flex: 0,
+    flexShrink: 2,
+    paddingVertical: 4,
     paddingHorizontal: 15,
-    marginRight: 5,
+    marginHorizontal: 3,
+    marginVertical: 5,
     textAlign: 'center',
     fontWeight: 'bold',
     fontStyle: 'italic',

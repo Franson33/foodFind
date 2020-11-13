@@ -32,23 +32,24 @@ const ImageBox = ({arr}) => {
 
 const styles = StyleSheet.create({
   imageBox: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
     borderRadius: 5,
     backgroundColor: '#fff',
     overflow: 'hidden'
   },
   imageBig: {
-    height: 200,
+    height: '68%',
     width: '99%',
-    margin: 2,
+    marginTop: 2,
     borderRadius: 5,
   },
   image: {
-    height: 100,
+    height: '30%',
     width: '49%',
-    marginLeft: 2,
-    marginBottom: 2,
+    marginVertical: 2,
     borderRadius: 5,
   },
 })

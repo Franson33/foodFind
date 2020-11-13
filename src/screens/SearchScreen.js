@@ -11,7 +11,7 @@ import CitiesArr from '../components/CitiesArr'
 
 
 const SearchScreen = () => {
-  const [term, setTerm] = useState('pizza')
+  const [term, setTerm] = useState('')
   const [city, setCity] = useState('new york')
   const [modalVisible, setModalVisible] = useState(false)
   const [searchApi, results, errorMsg, contentReady] = useResults()
@@ -82,6 +82,7 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   search: {
     flexDirection: 'row',
+    width: '100%',
   },
   modalContent: {
     flex: 1,

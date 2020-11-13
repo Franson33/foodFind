@@ -6,8 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/foodFind.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/foodFind.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {

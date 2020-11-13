@@ -17,10 +17,7 @@ const navigator = createStackNavigator(
       backgroundColor: '#29434e',
     },
     headerTintColor: '#fff',
-    headerRightContainerStyle: {
-      marginRight: 20,
-    }
-  }  
+  }
 })
 
 export default createAppContainer(navigator) 

@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   image: {
-    width: 250,
-    height: 155,
+    width: 230,
+    height: 150,
+    resizeMode: 'stretch',
   },
   textStars: {
     position: 'absolute',

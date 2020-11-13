@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   info: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     fontStyle: 'italic',
   },

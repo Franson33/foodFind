@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   chipsBox: {
     flex: 0,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     flexShrink: 1,
     flexWrap: 'wrap',
     marginTop: 4,
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
   },
   chipsTitle: {
     marginBottom: 3,
+    marginLeft: 0,
     fontSize: 15,
     textAlignVertical: 'center',
   },

@@ -17,7 +17,7 @@ const ResultList = ({title, results, ready, onPress}) => (
             showsHorizontalScrollIndicator={false}
             renderItem={({item}) => (
               <TouchableOpacity 
-                onPress={() => onPress(item.id)}
+              onPress={() => onPress(item.id)}
               >
                 <ResultCard result={item} />
               </TouchableOpacity>

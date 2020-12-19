@@ -14,7 +14,6 @@ const SearchScreen = ({navigation}) => {
   const [term, setTerm] = useState('ice cream')
   const [city, setCity] = useState('new york')
   const [modalVisible, setModalVisible] = useState(false)
-  const [shopId, setShopId] = useState('')
   const [searchApi, results, errorMsg, contentReady] = useResults()
 
   const filteredRes = useMemo(() => 
@@ -52,28 +51,19 @@ const SearchScreen = ({navigation}) => {
         results = {filteredRes[0]}
         title="An Easy Rate"
         ready={contentReady}
-        onPress={newId => (
-          setShopId(newId),
-          navigation.navigate('MoreInfo', {id: shopId})
-        )}
+        onPress={shopId => navigation.navigate('MoreInfo', {id: shopId})}
       />
-          <ResultList
+      <ResultList
         results = {filteredRes[1]}
         title="Average Price"
         ready={contentReady}
-        onPress={newId => (
-          setShopId(newId),
-          navigation.navigate('MoreInfo', {id: shopId})
-        )}
+        onPress={shopId => navigation.navigate('MoreInfo', {id: shopId})}
       />
-       <ResultList
+      <ResultList
         results = {filteredRes[2]}
         title="Big Spender"
         ready={contentReady}
-        onPress={newId => (
-          setShopId(newId),
-          navigation.navigate('MoreInfo', {id: shopId})
-        )}
+        onPress={shopId => navigation.navigate('MoreInfo', {id: shopId})}
       />
       <Modal
         animationType="slide"

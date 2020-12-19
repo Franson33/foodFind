@@ -7,11 +7,12 @@ import InfoBox from '../components/InfoBox'
 import ChipsBox from '../components/ChipsBox'
 
 
-const MoreInfoScreen = ({lookDetails}) => {
-    const [idApi, result, errorMsg] = useId()
+const MoreInfoScreen = ({route}) => {
+  const {id} = route.params
+  const [idApi, result, errorMsg] = useId()
 
   useEffect(() => {
-    idApi(lookDetails)
+    idApi(id)
   }, [])
 
   if (!result) {
@@ -36,12 +37,13 @@ const MoreInfoScreen = ({lookDetails}) => {
         title={'Categories:'}
         chipsInfo={result.categories}
       />
-      {result.transactions.length === 0
-       ? null
-       : <ChipsBox
-           title={'Transactions:'}
-           chipsInfo={result.transactions}
-         />}       
+      {(result.transactions.length === 0)
+         ? null
+         : <ChipsBox
+             title={'Transactions:'}
+             chipsInfo={result.transactions}
+           />
+      }       
       {ShowErrorMsg(errorMsg)}
     </ScrollView>
   ) 

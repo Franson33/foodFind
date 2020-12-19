@@ -1,23 +1,22 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 
 const ChipsBox = ({title, chipsInfo}) => {
-  const arr = chipsInfo.map((chip, i) => {
-    return (
+  const arr = useMemo(() => 
+    chipsInfo.map((chip, i) => {
+      return (
         chipsInfo[i]
-        ? <Text 
-            style={styles.chip}
-            key={'chip200' + `${i}`}
-          >{
-            chipsInfo[i]['title']
-            ? chipsInfo[i]['title']
-            : chipsInfo[i]}
-          </Text>
-        : null
-    )  
-  })
-
+          ? <Text 
+              style={styles.chip}
+              key={'chip200' + `${i}`}
+            >
+              {chip?.title || chip}           
+            </Text>
+          : null
+      )  
+    }), [chipsInfo])
+    
   return (
     <View style={styles.chipsBox}>
       <Text style={styles.chipsTitle}>{title}</Text>

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 230,
-    height: 150,
+    height: 180,
     resizeMode: 'stretch',
   },
   textStars: {

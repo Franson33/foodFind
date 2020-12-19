@@ -3,11 +3,9 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
-const CityButton = ({toOpenModal}) => {
+const CityButton = ({onPress}) => {
   return (
-    <TouchableOpacity 
-      onPress={toOpenModal}
-    >
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         <Text style={styles.title}>
           City

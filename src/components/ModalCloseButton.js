@@ -3,10 +3,10 @@ import { TouchableOpacity, StyleSheet } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'; 
 
 
-const ModalCloseButton = ({toCloseModal}) => {
+const ModalCloseButton = ({onPress}) => {
   return (
     <TouchableOpacity
-      onPress={toCloseModal}
+      onPress={onPress}
     >
       <MaterialIcons
         style={styles.modalClose}

@@ -2,33 +2,17 @@ import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 
 
-const ImageBox = ({arr}) => {
-  return (
-    <View style={styles.imageBox}>
+const ImageBox = ({images}) => (
+  <View style={styles.imageBox}>
+    {images.map((image, i) => (
       <Image
-        style={styles.imageBig}
-        source={
-          arr[0]
-          ? {uri: arr[0]}
-          : null}
+        key={`${image}`}
+        style={i === 0 ? styles.imageBig : styles.image }
+        source={{uri: image}}
       />
-      <Image
-        style={styles.image}
-        source={
-          arr[1]
-          ? {uri: arr[1]}
-          : null}
-      />
-      <Image
-        style={styles.image}
-        source={
-          arr[2]
-          ? {uri: arr[2]}
-          : null}
-      />
-    </View>
-  )
-}
+    ))}
+  </View>
+)
 
 const styles = StyleSheet.create({
   imageBox: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { StatusBar, View, StyleSheet, Modal } from 'react-native'
 import useResults from '../hooks/useResults'
 import FilterResByPrice from '../functions/FilterResByPrice'
@@ -10,21 +10,24 @@ import ModalCloseButton from '../components/ModalCloseButton'
 import CitiesArr from '../components/CitiesArr'
 
 
-const SearchScreen = () => {
-  const [term, setTerm] = useState('')
+const SearchScreen = ({navigation}) => {
+  const [term, setTerm] = useState('ice cream')
   const [city, setCity] = useState('new york')
   const [modalVisible, setModalVisible] = useState(false)
   const [searchApi, results, errorMsg, contentReady] = useResults()
 
-  const filteredRes = FilterResByPrice(results)
+  const filteredRes = useMemo(() => 
+    FilterResByPrice(results), [results])
+
+  useEffect(() => {
+    if (results) {
+      searchApi(term, city)
+    }
+  }, [city])
 
   if (!results) {
     return null
   }
-
-  useEffect(() => {
-    searchApi(term, city)
-  }, [city])
 
   return (
     <>
@@ -37,9 +40,10 @@ const SearchScreen = () => {
           term={term}
           onTermChange={(newTerm) => setTerm(newTerm)}
           onTermSubmit={() => searchApi(term, city)}
+          onEditStart={() => setTerm('')}
         />
         <CityButton 
-          toOpenModal={() => setModalVisible(true)}
+          onPress={() => setModalVisible(true)}
         />
       </View>
       {ShowErrorMsg(errorMsg)}
@@ -47,32 +51,32 @@ const SearchScreen = () => {
         results = {filteredRes[0]}
         title="An Easy Rate"
         ready={contentReady}
+        onPress={shopId => navigation.navigate('MoreInfo', {id: shopId})}
       />
       <ResultList
         results = {filteredRes[1]}
         title="Average Price"
         ready={contentReady}
+        onPress={shopId => navigation.navigate('MoreInfo', {id: shopId})}
       />
-      <ResultList 
+      <ResultList
         results = {filteredRes[2]}
         title="Big Spender"
         ready={contentReady}
+        onPress={shopId => navigation.navigate('MoreInfo', {id: shopId})}
       />
       <Modal
         animationType="slide"
         visible={modalVisible}
       >
         <ModalCloseButton 
-          toCloseModal={() => setModalVisible(false)}
+          onPress={() => setModalVisible(false)}
         />
           <CitiesArr 
-            toChangeCity={(newCity) => {
-              return (
-                setCity(newCity), 
-
-                setModalVisible(false)
-              )
-            }}
+            changeCity={(newCity) => (
+              setCity(newCity), 
+              setModalVisible(false)
+            )}
           />
       </Modal>
     </>

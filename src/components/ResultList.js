@@ -1,36 +1,32 @@
 import React from 'react'
 import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import { withNavigation } from 'react-navigation'
 import ResultCard from './ResultCard'
 import ResultListSkel from './ResultListSkel'
 
 
-const ResultList = ({title, results, ready, navigation}) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <View style={styles.box}>
-        {ready === false 
-          ? <ResultListSkel />
-          : <FlatList
-              horizontal
-              data={results}
-              keyExtractor={result => result.id}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({item}) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('MoreInfo', { id: item.id })}
-                  >
-                    <ResultCard result={item} />
-                  </TouchableOpacity>
-                )
-              }}
-            />}
-      </View>
+const ResultList = ({title, results, ready, onPress}) => (
+  <View style={styles.container}>
+    <Text style={styles.title}>{title}</Text>
+    <View style={styles.box}>
+      {(!ready)  
+        ? <ResultListSkel />
+        : <FlatList
+            horizontal
+            data={results}
+            keyExtractor={result => result.id}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item}) => (
+              <TouchableOpacity 
+              onPress={() => onPress(item.id)}
+              >
+                <ResultCard result={item} />
+              </TouchableOpacity>
+            )}
+          />
+      }
     </View>
-  )
-}
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -54,4 +50,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(ResultList)
+export default ResultList

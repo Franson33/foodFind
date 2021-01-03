@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Text, StyleSheet, ScrollView } from 'react-native'
 import ShowErrorMsg from '../components/ShowErrorMsg'
-import idApi  from '../hooks/useId'
+import useId  from '../hooks/useId'
 import ImageBox from '../components/ImageBox'
 import InfoBox from '../components/InfoBox'
 import ChipsBox from '../components/ChipsBox'
 
 
-const MoreInfoScreen = ({navigation}) => {
-  const restId = navigation.getParam('id')
-  const [result, setResult] = useState(null)
-  const [errorMsg, setErrorMsg] = useState('')
+const MoreInfoScreen = ({route}) => {
+  const {id} = route.params
+  const [idApi, result, errorMsg] = useId()
 
   useEffect(() => {
-    idApi(restId, setResult, setErrorMsg)
+    idApi(id)
   }, [])
 
   if (!result) {
@@ -23,7 +22,7 @@ const MoreInfoScreen = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <ImageBox
-        arr={result.photos} 
+        images={result.photos} 
       />
       <Text style={styles.name}>{result.name}</Text>
       <InfoBox
@@ -38,12 +37,13 @@ const MoreInfoScreen = ({navigation}) => {
         title={'Categories:'}
         chipsInfo={result.categories}
       />
-      {result.transactions.length === 0
-       ? null
-       : <ChipsBox
-           title={'Transactions:'}
-           chipsInfo={result.transactions}
-         />}       
+      {(result.transactions.length === 0)
+         ? null
+         : <ChipsBox
+             title={'Transactions:'}
+             chipsInfo={result.transactions}
+           />
+      }       
       {ShowErrorMsg(errorMsg)}
     </ScrollView>
   ) 

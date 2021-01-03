@@ -3,30 +3,21 @@ import { Text, TouchableOpacity, StyleSheet, SectionList } from 'react-native'
 import cityList from '../data/cityList'
 
 
-const CitiesArr = ({toChangeCity}) => {
-  
-  const Item = ({title}) => {
-    return (
-      <>
-        <TouchableOpacity
-          onPress={() => toChangeCity(title)}
-          style={styles.cityBox}
-        >
-          <Text
-            style={styles.city}
-          >
-            {title}
-          </Text>
-        </TouchableOpacity>
-      </>
-    )
-  }
-
+const CitiesArr = ({changeCity}) => {
   return (
     <SectionList 
       sections={cityList}
       keyExtractor={(city) => city}
-      renderItem={({item}) => <Item title={item} />}
+      renderItem={({item}) => (
+        <TouchableOpacity
+          onPress={() => changeCity(item)}
+          style={styles.cityBox}
+        >
+          <Text style={styles.city}>
+            {item}
+          </Text>
+        </TouchableOpacity>
+      )}
       renderSectionHeader={({section: {title}}) => (
         <Text style={styles.country}>{title}</Text>
       )}
@@ -37,7 +28,7 @@ const CitiesArr = ({toChangeCity}) => {
 const styles = StyleSheet.create({
   country: {
     flex: 1,
-    width: 350,
+    width: '95%',
     marginTop: 4,
     marginHorizontal: 4,
     paddingHorizontal: 15,
@@ -47,7 +38,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderWidth: 2,
     borderStyle: 'solid',
-    borderColor: '#29434e',
+    borderColor: 'transparent',
     borderRadius: 5,
     backgroundColor: '#29434e',
 },
